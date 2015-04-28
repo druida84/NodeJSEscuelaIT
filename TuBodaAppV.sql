@@ -1,7 +1,6 @@
 DROP DATABASE tubodaapp;
 CREATE DATABASE tubodaapp;
 USE tubodaapp;
-
 CREATE TABLE TUsuarios(
 Usuario       VARCHAR(25) NOT NULL PRIMARY KEY,
 Password      VARCHAR(12) NOT NULL
