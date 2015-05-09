@@ -2,15 +2,15 @@ DROP DATABASE tubodaapp;
 CREATE DATABASE tubodaapp;
 USE tubodaapp;
 CREATE TABLE TUsuarios(
-Usuario       VARCHAR(25) NOT NULL PRIMARY KEY,
-Password      VARCHAR(12) NOT NULL
+Usuario       VARCHAR(40) NOT NULL PRIMARY KEY,
+Password      VARCHAR(20) NOT NULL
 )CHARACTER SET utf8 COLLATE utf8_spanish_ci; 
 
 Insert into TUsuarios (Usuario,Password)Values ('M@g.com','12345');
 
 CREATE TABLE TPerfilBoda(
 NombreBoda             VARCHAR(25) NOT NULL PRIMARY KEY,
-Usuario                VARCHAR(25) NOT NULL,
+Usuario                VARCHAR(40) NOT NULL,
 NombrePersonaUno       VARCHAR(20) NOT NULL,
 TipoPersonaUno         VARCHAR(12) NOT NULL,
 NombrePersonaDos       VARCHAR(20) NOT NULL,
@@ -38,7 +38,7 @@ CONSTRAINT PerfilBodasMesas  FOREIGN KEY (NombreBoda)  REFERENCES TPerfilBoda(No
 )CHARACTER SET utf8 COLLATE utf8_spanish_ci; 
 
 CREATE TABLE TInvitados(
-NombreInvitado       VARCHAR(15)  NOT NULL ,
+NombreInvitado       VARCHAR(30)  NOT NULL ,
 NumeroMesa           TINYINT      NOT NULL ,
 NombreBoda           VARCHAR(25)  NOT NULL ,
 FHActualizacion      TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -50,10 +50,10 @@ CONSTRAINT InvitadosMesas2  FOREIGN KEY (NumeroMesa)  REFERENCES TMesasInvitados
 CREATE TABLE TPublicaciones(
 IdPublicacion        INTEGER      NOT NULL PRIMARY KEY AUTO_INCREMENT,
 NombreBoda           VARCHAR(25)  NOT NULL,
-Usuario              VARCHAR(12)  NOT NULL,
+Usuario              VARCHAR(40)  NOT NULL,
 TipoPublicacion      VARCHAR(15)  NOT NULL,
-Mensaje              VARCHAR(255) ,
-RutaImagen           VARCHAR(22)  ,
+Mensaje              TEXT ,
+RutaImagen           VARCHAR(40)  ,
 FechaHora            TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT PerfilBodasPublicaciones  FOREIGN KEY (NombreBoda)  REFERENCES TPerfilBoda(NombreBoda),
 CONSTRAINT UsuariosPublicaciones     FOREIGN KEY (Usuario)     REFERENCES TUsuarios(Usuario)
